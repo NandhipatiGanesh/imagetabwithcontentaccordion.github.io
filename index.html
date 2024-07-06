@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Images with One Click</title>
+    <style>
+        body {
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+            width: 80%;
+            height: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width:800px){
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 80%;
+                height: fit-content;
+                margin-left: auto;
+                margin-right: auto;
+            } 
+            .image-container {
+                width: 100% !important;
+                height: 350px;
+                margin-bottom: 20px;
+            }
+            .controls{
+               width: 100% !important;
+            }
+        }
+        
+        @media (max-width:420px){
+            .container {
+                display: flex;
+                flex-direction: column-reverse;
+                align-items: flex-start;
+                width: 100%;
+                height: fit-content;
+                margin-left: auto;
+                margin-right: auto;
+            } 
+            .image-container {
+                width: 100% !important;
+                height: 350px !important;
+                margin-bottom: 20px;
+            }
+            .controls{
+               width: 100%;
+            }
+            .accordions label{
+                font-size: 20px !important;
+            }
+            .ac-content{
+                font-size: 14px !important;
+            }
+        }
+        .image-container {
+            position: relative;
+            width: 50%;
+            height: 500px;
+            margin-right: 20px;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background-size: cover;
+            transition: opacity 0.5s ease-in-out;
+            border-radius: 16px;
+        }
+
+        .image-container img.active {
+            opacity: 1;
+            border-radius: 16px;
+        }
+
+        .controls {
+            flex: 1; /* Ensures the controls take remaining space */
+            width: 50%;
+            height: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .controls label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            transition: opacity 0.3s ease;
+        }
+
+        .accordions {
+            margin-bottom: 20px; /* Adds some spacing between accordion items */
+        }
+
+        .accordions label {
+           /* padding-top: 35px;
+            padding-bottom: 10px;  Reduced padding when active */
+            cursor: pointer;
+            opacity: 0.4;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.429em;
+            letter-spacing: 0.3px;
+            transition: opacity 0.3s ease, padding-bottom 0.3s ease;
+        }
+
+        .accordions label.active {
+            opacity: 1;
+            color: #000b0f;
+ /* Reduced padding when active */
+        }
+
+        .accordions .ac-content {
+            display: none;
+            padding-top: 10px;
+            padding-left: 20px;
+            border-left: 2px solid #333;
+            font-size: 18px;
+            line-height: 1.9em;
+            letter-spacing: 0.2px;
+            font-style: normal;
+            font-weight: 400;
+            transform: translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .accordions .ac-content.active {
+            display: block;
+            opacity: 1;
+            max-height: 200px; /* Adjust as needed to fit your content */
+    padding-top: 10px;
+    padding-bottom: 10px;
+        }
+
+        .accordions {
+            border-radius: 16px;
+            padding: 19px 38px;
+            text-decoration: none;
+            transition: box-shadow .3s, opacity .3s;
+            border: 1px solid #e4e6e6;
+    background-color: white;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+          }
+          .accordions:hover{
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+          }
+          
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="image-container">
+        <img src="https://assets-global.website-files.com/63e2b1032de70c42b8012280/63e583360cb1e35634648656_image-1-steps-v3-startech-x-template-p-800.png" alt="Image 1" class="active">
+        <img src="https://assets-global.website-files.com/63e2b1032de70c42b8012280/63e58337f7f1893ffd1090d6_image-2-steps-v3-startech-x-template-p-800.png" alt="Image 2">
+        <img src="https://assets-global.website-files.com/63e2b1032de70c42b8012280/63e5833787d2ca8422f1cc9e_image-3-steps-v3-startech-x-template-p-800.png" alt="Image 3">
+    </div>
+
+    <div class="controls">
+        <div class="accordions">
+            <label data-target="1" class="active">1. Create your account</label>
+            <div class="ac-content active">Pharetra sagittis id fermentum viverra id vestibulum sapien fermentum id purus viverra mi tellus scelerisque dolor vitae.</div>
+        </div>
+        <div class="accordions">
+            <label data-target="2">2. Integrate with many tools</label>
+            <div class="ac-content">Pharetra sagittis id fermentum viverra id vestibulum sapien fermentum id purus viverra mi tellus scelerisque dolor vitae.</div>
+        </div>
+        <div class="accordions">
+            <label data-target="3">3. Close more sales</label>
+            <div class="ac-content">Pharetra sagittis id fermentum viverra id vestibulum sapien fermentum id purus viverra mi tellus scelerisque dolor vitae.</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const labels = document.querySelectorAll('.accordions label');
+    const images = document.querySelectorAll('.image-container img');
+    const contents = document.querySelectorAll('.accordions .ac-content');
+
+    labels.forEach(label => {
+        label.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+
+            // Toggle images
+            images.forEach((img, index) => {
+                if (index + 1 == target) {
+                    img.classList.add('active');
+                } else {
+                    img.classList.remove('active');
+                }
+            });
+
+            // Toggle accordion content
+            contents.forEach((content, index) => {
+                if (index + 1 == target) {
+                    content.classList.add('active');
+                    // Dynamically set max-height based on content height
+                    const contentHeight = content.scrollHeight;
+                    content.style.maxHeight = contentHeight + 'px';
+                } else {
+                    content.classList.remove('active');
+                    content.style.maxHeight = '0';
+                }
+            });
+
+            // Toggle label style
+            labels.forEach((lbl, index) => {
+                if (index + 1 == target) {
+                    lbl.classList.add('active');
+                } else {
+                    lbl.classList.remove('active');
+                }
+            });
+        });
+    });
+});
+
+</script>
+
+</body>
+</html>
